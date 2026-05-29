@@ -13,7 +13,7 @@
 
 # 1) configuration et information du système
 
-## Plan d'adressage
+## Plan d'adressage (en graphe si possible)
 
 dans la **VLAN122** nous avons :
 
@@ -94,44 +94,45 @@ pour le **CLIENT**(172.20.122.1) :
 Connaître sa configuration réseau 
 
     ip a 
-pour créer la route entre le CLIENT et le SMTP:
-
-	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
-	
-	ip r a 172.20.122.1 via 192.168.0.122 dev eth3
-pour créer la route entre le DHCP et le SMTP:
+pour créer la route entre le CLIENT et le SMTP: 
 	
 	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
 	
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
-la suite des comment:
 
 	nslookup smtp122.mail122.com 192.168.0.254
 
 	host smtp122.mail122.com 192.168.0.254
 	chmod +x log
 	./log > CLIENT.log
-
-	ip link set up dev VLAN122
-	sftp://root@172.21.180.146/
 	
 	nano /etc/resolv.conf
 	
 Pour active l'interface:
 
-	ip link set up dev eth2		
+	ip link set up dev eth2	
 
 # 2) la capture de la trame du vlan allant du client vers le dhcp ainsi que son expliquation
 
-(on place la trame ici)
+veullez trouver ci joint le fichier vlan_entre_client_et_DHCP.pcapng
 
-expliation de ce qu'on est sensé voir:
+voici la capture de la vlan entre notre machine client et notre machine DHCP.
+on peut y voir deux adresse ip qui se réponde successivement.
+172.20.122.1 qui corespond a la machine client et 172.20.122.1
+
 
 # 3) visualisation de la résolution DNS via routeru vers client 
 
-(on place la trame ici)
+veuillez trouver si joint le fichier dns_via_routeur_depuis_client.pcapng
 
-explication ici
+voici la capture de la résolution DNS via Routeur depuis la machine client.
+on peut y voir les communication entre deux machines.
+l'ip 172.20.122.1 corespond a notre machine client et l'ip 192.168.0.254 qui corespond au DNS
+les quatre premier signaux coresponds au protocole DNS 
+le premier corespond a une demande pour l'utilisateur sous le nom de smtp122.mail122.com
+la duexième est la reponse du DNS qui signifie qu'il reconait desormais smtp122.mail122.com sous le nom machine122.mail122.com et enregistre qu'il peut l'apeler a l'adresse ip 192.168.0.22 (qui corespond a l'SMTP)
+la troisième est la machine client qui fait une demande sous son nouveau nom
+la quatrieme est la réponse de DNS qui indique que machine122.mail122.com est desormais reconnu comme l'utilisateur principale de machine client
 
 # 4) demonstration du routage entre la machine client et le smtp
 
