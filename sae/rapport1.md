@@ -91,59 +91,121 @@ dans le **eth3**  nous avans :
 |192.168.0.122/24(ROUTEUR)  |ETH3|        |
 |192.168.0.254(DNS)|ETH3||
 
+## pour le **DNS**(192.168.0.254) :
+| **destination** | **iface** | **gw** |
+|-----------------|-----------|--------|
+|172.20.122.2/24(DHCP)  |ETH3| 192.168.0.122|
+|172.20.122.1(Client)|ETH3|192.168.0.122|
+|192.168.0.122/24(ROUTEUR)  |ETH3|        |
+|192.168.0.22(SMTP)|ETH3||
 
 
 ## Commandes de configuration
+### 1) Commandes sur la machine CLIENT
 
-Connaître sa configuration réseau 
 
-    ip a 
-pour créer la route entre le CLIENT et le SMTP: 
-	
-	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
-	
-	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
 
-	nslookup smtp122.mail122.com 192.168.0.254
+```bash
+# Afficher la configuration réseau actuelle
+ip a
 
-demande au dsn l'adresse ip qui est associe a cette adresse mail:
+# Créer l'interface VLAN 122 sur l'interface eth2
+ip link add link eth2 name VLAN122 type vlan id 122
 
-	host smtp122.mail122.com 192.168.0.254
-donne le droit d'executer le fichier log :
+# Activer l'interface physique eth2
+ip link set up dev eth2
 
-	chmod +x log
-executer le log depuis la VM CLIENT:
+# Activer l'interface VLAN122
+ip link set up dev VLAN122
 
-	./log > CLIENT.log
-	
-	nano /etc/resolv.conf
-	nameserver 192.168.0.254
+# Attribuer l'adresse IP au CLIENT dans le VLAN
+ip a add 172.20.122.1/24 dev VLAN122
+# pour générer le fichier log du DHCP
+chmod +x log
+./log > CLIENT.log
+
+# demander au DNS l’adresse IP associée au nom smtp122.mail122.com
+nslookup smtp122.mail122.com 192.168.0.254
+```
+### 2)  Commandes sur la machine DHCP :
+``` bash
+# Afficher la configuration réseau actuelle
+ip a
+
+# Créer l'interface VLAN 122 sur eth2
+ip link add link eth2 name VLAN122 type vlan id 122
+
+# Activer l'interface physique eth2
+ip link set up dev eth2
+
+# Activer l'interface VLAN122
+ip link set up dev VLAN122
+
+# Attribuer l'adresse IP à la machine DHCP
+ip a add 172.20.122.2/24 dev VLAN122
+
+# pour genere le fichier log du DHCP
+chmod +x log
+./log > DHCP.log
+```
+### 3) Commandes sur la machine ROUTEUR :
+``` bash
+# Afficher la configuration réseau actuelle
+ip a
+
+# Créer l'interface VLAN 122 sur eth2
+ip link add link eth2 name VLAN122 type vlan id 122
+
+# Activer l'interface physique eth2
+ip link set up dev eth2
+
+# Activer l'interface VLAN122
+ip link set up dev VLAN122
+
+# Attribuer l'adresse IP du ROUTEUR côté VLAN
+ip a add 172.20.122.3/24 dev VLAN122
+
+# Activer l'interface eth3 côté LAN
+ip link set up dev eth3
+
+# Attribuer l'adresse IP du ROUTEUR côté LAN
+ip a add 192.168.0.122/24 dev eth3
+
+#demande au dsn l'adresse ip qui est associe a cette adresse mail:
+host smtp122.mail122.com 192.168.0.254
+
+# rajoute une resolution sur le reseau pour la demande DNS
+nano /etc/resolv.conf
+nameserver 192.168.0.254 
+```
 ![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
-Creer la vlan :
-
-	ip link a link eth2 name VLAN122 type vlan id 122
-
-	
-	
-Pour active l'interface:
-
-	ip link set up dev eth2	
+``` bash
+# pour genere le fichier log du ROUTEUR
+chmod +x log
+./log > ROUTEUR.log
+```
 
 
+### 4)Commandes sur la machine SMTP:
+``` bash 
+# Afficher la configuration réseau actuelle
+ip a
+
+# Activer l'interface eth3
+ip link set up dev eth3
+
+# Attribuer l'adresse IP au serveur SMTP
+ip a add 192.168.0.22/24 dev eth3
+
+# Ajouter une route vers le VLAN en passant par le ROUTEUR
+ip route add 172.20.122.0/24 via 192.168.0.122 dev eth3
+```
 
 
-# 4) Démonstration du routage entre la machine cliente et le serveur SMTP
 
-Veuillez trouver ci-joint les fichiers **routage_1.pcapng** pour la capture côté machine cliente et **routage_2.pcapng** pour la capture côté machine SMTP.
 
-Nous pouvons voir un ensemble de messages correspondant à des *ping* effectuant des allers-retours entre les deux machines.
 
-Les deux adresses IP visibles sont :
 
-* **172.20.122.1**, qui correspond à la machine cliente ;
-* **192.168.0.22**, qui correspond à la machine SMTP.
-
-Le premier message provient de la machine cliente à destination de la machine SMTP et correspond à une requête *ping* passant par un VLAN virtuel.
 
 Le deuxième message est la réponse de la machine SMTP, qui passe également par le même VLAN virtuel.
 # II) Analyse capture de trames - VLAN
