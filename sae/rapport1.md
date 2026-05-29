@@ -104,7 +104,7 @@ pour créer la route entre le DHCP et le SMTP:
 	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
 	
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
-la suite des comment:
+demande de renseignement concernant cette adresse mail faite par le client :
 
 	nslookup smtp122.mail122.com 192.168.0.254
 
@@ -128,8 +128,15 @@ accede a la VM depuis l'explorateur de fichier:
 
 	sftp://root@172.21.180.146/
 
-modifiaction de configuration de resolv pour que il demande d'abord au DNS
+modifiaction de configuration de resolv pour que il demande d'abord au DNS:
+
 	nano /etc/resolv.conf
+	nameserver 192.168.0.254
+![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
+Creer la vlan :
+
+	ip link a link eth2 name VLAN122 type vlan id 122
+
 	
 	
 Pour active l'interface:
