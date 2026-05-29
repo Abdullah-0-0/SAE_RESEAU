@@ -127,33 +127,46 @@ Pour active l'interface:
 
 	ip link set up dev eth2	
 
-# 2) la capture de la trame du vlan allant du client vers le dhcp ainsi que son expliquation
+# 2) Capture de la trame du VLAN allant du client vers le DHCP ainsi que son explication
 
-veullez trouver ci joint le fichier vlan_entre_client_et_DHCP.pcapng
+Veuillez trouver ci-joint le fichier **vlan_entre_client_et_DHCP.pcapng**.
 
-voici la capture de la vlan entre notre machine client et notre machine DHCP.
-on peut y voir deux adresse ip qui se réponde successivement.
-172.20.122.1 qui corespond a la machine client et 172.20.122.2 qui corespond a DHCP
-le contenue de ces information sont de types ping et passe par notre virtual lan qui a l'identifient 122
+Voici la capture du VLAN entre notre machine cliente et notre machine DHCP.
+On peut y voir deux adresses IP qui communiquent successivement :
 
-# 3) visualisation de la résolution DNS via routeru vers client 
+* **172.20.122.1**, qui correspond à la machine cliente ;
+* **172.20.122.2**, qui correspond au serveur DHCP.
 
-veuillez trouver si joint le fichier dns_via_routeur_depuis_client.pcapng
+Le contenu de ces échanges est de type *ping* et passe par notre VLAN ayant l’identifiant **122**.
 
-voici la capture de la résolution DNS via Routeur depuis la machine client.
-on peut y voir les communication entre deux machines.
-l'ip 172.20.122.1 corespond a notre machine client et l'ip 192.168.0.254 qui corespond au DNS
-les quatre premier signaux coresponds au protocole DNS 
-le premier corespond a une demande pour l'utilisateur sous le nom de smtp122.mail122.com
-la duexième est la reponse du DNS qui signifie qu'il reconait desormais smtp122.mail122.com sous le nom machine122.mail122.com et enregistre qu'il peut l'apeler a l'adresse ip 192.168.0.22 (qui corespond a l'SMTP)
-la troisième est la machine client qui fait une demande sous son nouveau nom
-la quatrieme est la réponse de DNS qui indique que machine122.mail122.com est desormais reconnu comme l'utilisateur principale de machine client
+# 3) Visualisation de la résolution DNS via le routeur depuis le client
 
-# 4) demonstration du routage entre la machine client et le smtp
+Veuillez trouver ci-joint le fichier **dns_via_routeur_depuis_client.pcapng**.
 
-veuiller trouver si joint les fichier routage_1.pcapng pour la vision de la machine client et routage_2.pcapng pour la visiont de la machine smtp
+Voici la capture de la résolution DNS via le routeur depuis la machine cliente.
+On peut y voir les communications entre deux machines :
 
-nous pouvons voir un ensemble de message qui coresponde a des ping qui font des aller retour entre les deux machines.
-on a devant nous deux adresse ip, la première est 172.20.122.1 et corespond a la machine client la deuxieme est 192.168.0.22 et corespond a la machine smtp.
-le premier message provient de la machine client en destination de la machine smtp et corespond a un ping qui va passer par une virtual lan
-le deuxième message est la réponse de la machine smtp qui va aussi passe par la meme lan virtuel
+* **172.20.122.1**, qui correspond à notre machine cliente ;
+* **192.168.0.254**, qui correspond au serveur DNS.
+
+Les quatre premiers échanges correspondent au protocole DNS :
+
+1. Le premier correspond à une requête concernant l’utilisateur sous le nom **smtp122.mail122.com**.
+2. Le deuxième est la réponse du serveur DNS indiquant qu’il reconnaît désormais **smtp122.mail122.com** sous le nom **machine122.mail122.com**, et qu’il peut être joint à l’adresse IP **192.168.0.22** (qui correspond au serveur SMTP).
+3. Le troisième correspond à une nouvelle requête de la machine cliente utilisant son nouveau nom.
+4. Le quatrième est la réponse du serveur DNS indiquant que **machine122.mail122.com** est désormais reconnu comme nom principal de la machine cliente.
+
+# 4) Démonstration du routage entre la machine cliente et le serveur SMTP
+
+Veuillez trouver ci-joint les fichiers **routage_1.pcapng** pour la capture côté machine cliente et **routage_2.pcapng** pour la capture côté machine SMTP.
+
+Nous pouvons voir un ensemble de messages correspondant à des *ping* effectuant des allers-retours entre les deux machines.
+
+Les deux adresses IP visibles sont :
+
+* **172.20.122.1**, qui correspond à la machine cliente ;
+* **192.168.0.22**, qui correspond à la machine SMTP.
+
+Le premier message provient de la machine cliente à destination de la machine SMTP et correspond à une requête *ping* passant par un VLAN virtuel.
+
+Le deuxième message est la réponse de la machine SMTP, qui passe également par le même VLAN virtuel.
