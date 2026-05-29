@@ -94,23 +94,32 @@ pour le **CLIENT**(172.20.122.1) :
 Connaître sa configuration réseau 
 
     ip a 
-pour créer la route entre le CLIENT et le SMTP: 
+pour créer la route entre le CLIENT et le SMTP:
+
+	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
+	
+	ip r a 172.20.122.1 via 192.168.0.122 dev eth3
+pour créer la route entre le DHCP et le SMTP:
 	
 	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
 	
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
+la suite des comment:
 
 	nslookup smtp122.mail122.com 192.168.0.254
 
 	host smtp122.mail122.com 192.168.0.254
 	chmod +x log
 	./log > CLIENT.log
+
+	ip link set up dev VLAN122
+	sftp://root@172.21.180.146/
 	
 	nano /etc/resolv.conf
 	
 Pour active l'interface:
 
-	ip link set up dev eth2	
+	ip link set up dev eth2		
 
 # 2) la capture de la trame du vlan allant du client vers le dhcp ainsi que son expliquation
 
