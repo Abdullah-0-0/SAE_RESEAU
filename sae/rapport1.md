@@ -115,23 +115,7 @@ donne le droit d'executer le fichier log :
 executer le log depuis la VM CLIENT:
 
 	./log > CLIENT.log
-<<<<<<< HEAD
 	
-=======
-
-active les interfacts:
-
-	ip link set up dev eth2
-	ip link set up dev VLAN122
-	ip link set up dev eth3
-
-accede a la VM depuis l'explorateur de fichier:
-
-	sftp://root@172.21.180.146/
-
-modifiaction de configuration de resolv pour que il demande d'abord au DNS:
-
->>>>>>> refs/remotes/origin/main
 	nano /etc/resolv.conf
 	nameserver 192.168.0.254
 ![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
@@ -173,7 +157,7 @@ la quatrieme est la réponse de DNS qui indique que machine122.mail122.com est d
 
 explication ici (les condition dans lesquelle on été prise les capture et sur quelle machne etc, et se que l'on voit )
 
-# 5) resulata de la commande ./log > MACHINE.log sur les diférente machines
+# 5) resulat de la commande ./log > MACHINE.log sur les diférente machines
 
 ### Client:
 
