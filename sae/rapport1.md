@@ -113,7 +113,23 @@ donne le droit d'executer le fichier log :
 executer le log depuis la VM CLIENT:
 
 	./log > CLIENT.log
+<<<<<<< HEAD
 	
+=======
+
+active les interfacts:
+
+	ip link set up dev eth2
+	ip link set up dev VLAN122
+	ip link set up dev eth3
+
+accede a la VM depuis l'explorateur de fichier:
+
+	sftp://root@172.21.180.146/
+
+modifiaction de configuration de resolv pour que il demande d'abord au DNS:
+
+>>>>>>> refs/remotes/origin/main
 	nano /etc/resolv.conf
 	nameserver 192.168.0.254
 ![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
@@ -151,22 +167,9 @@ la quatrieme est la réponse de DNS qui indique que machine122.mail122.com est d
 
 # 4) demonstration du routage entre la machine client et le smtp
 
-(on place la trame ici) 
+veuiller trouver si joint les fichier routage_1.pcapng pour la vision de la machine client et routage_2.pcapng pour la visiont de la machine smtp
 
-explication ici (les condition dans lesquelle on été prise les capture et sur quelle machne etc, et se que l'on voit )
-
-# 5) resulat de la commande ./log > MACHINE.log sur les diférente machines
-
-### Client:
-
-
-
-### DHCP:
-
-
-
-### Routeur:
-
-
-
-### SMTP:
+nous pouvons voir un ensemble de message qui coresponde a des ping qui font des aller retour entre les deux machines.
+on a devant nous deux adresse ip, la première est 172.20.122.1 et corespond a la machine client la deuxieme est 192.168.0.22 et corespond a la machine smtp.
+le premier message provient de la machine client en destination de la machine smtp et corespond a un ping qui va passer par une virtual lan
+le deuxième message est la réponse de la machine smtp qui va aussi passe par la meme lan virtuel
