@@ -99,6 +99,7 @@ pour créer la route entre le CLIENT et le SMTP:
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
 
 	nslookup smtp122.mail122.com 192.168.0.254
+	ip a add 172.20.122.1/24 dev  VLAN122
 
 	host smtp122.mail122.com 192.168.0.254
 	ip link a link eth2 name VLAN122 type vlan id 122
