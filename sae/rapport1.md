@@ -1,7 +1,7 @@
 # Configuration réseau
 
-* NOMS : Chamsiddine Abdullah - 
-* GROUPE de TP :  GP-1
+* NOMS : Chamsiddine Abdullah - Clément Pissot
+* GROUPE de TP :  TD-1
 * X : 122
 * SECRET : antares
 * IP_CLIENT : 172.20.122.1/24
