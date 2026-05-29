@@ -105,6 +105,7 @@ pour créer la route entre le CLIENT et le SMTP:
 	ip link a link eth2 name VLAN122 type vlan id 122
 	chmod +x log
 	./log > CLIENT.log
+	ip link set up dev VLAN122
 	
 	nano /etc/resolv.conf
 	
