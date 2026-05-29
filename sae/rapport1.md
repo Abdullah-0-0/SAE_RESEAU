@@ -99,14 +99,47 @@ pour créer la route entre le CLIENT et le SMTP:
 	ip r a 192.168.0.22 via 172.20.122.3 dev VLAN122
 	
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
+<<<<<<< HEAD
+=======
+demande de renseignement concernant cette adresse mail faite par le client :
+>>>>>>> refs/remotes/origin/main
 
 	nslookup smtp122.mail122.com 192.168.0.254
 
+demande au dsn l'adresse ip qui est associe a cette adresse mail:
+
 	host smtp122.mail122.com 192.168.0.254
+donne le droit d'executer le fichier log :
+
 	chmod +x log
+executer le log depuis la VM CLIENT:
+
 	./log > CLIENT.log
+<<<<<<< HEAD
 	
+=======
+
+active les interfacts:
+
+	ip link set up dev eth2
+	ip link set up dev VLAN122
+	ip link set up dev eth3
+
+accede a la VM depuis l'explorateur de fichier:
+
+	sftp://root@172.21.180.146/
+
+modifiaction de configuration de resolv pour que il demande d'abord au DNS:
+
+>>>>>>> refs/remotes/origin/main
 	nano /etc/resolv.conf
+	nameserver 192.168.0.254
+![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
+Creer la vlan :
+
+	ip link a link eth2 name VLAN122 type vlan id 122
+
+	
 	
 Pour active l'interface:
 
