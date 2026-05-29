@@ -151,8 +151,8 @@ veullez trouver ci joint le fichier vlan_entre_client_et_DHCP.pcapng
 
 voici la capture de la vlan entre notre machine client et notre machine DHCP.
 on peut y voir deux adresse ip qui se réponde successivement.
-172.20.122.1 qui corespond a la machine client et 172.20.122.1
-
+172.20.122.1 qui corespond a la machine client et 172.20.122.2 qui corespond a DHCP
+le contenue de ces information sont de types ping et passe par notre virtual lan qui a l'identifient 122
 
 # 3) visualisation de la résolution DNS via routeru vers client 
 
