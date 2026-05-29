@@ -71,7 +71,7 @@ dans le **eth3**  nous avans :
 |192.168.0.22/24(SMTP) |ETH3|172.20.122.3|
 |192.168.0.254(DNS)|ETH3|172.20.122.3|
 
-## pour le **ROUTEUR**(172.20.122.1) :
+## pour le **ROUTEUR**(192.168.0.122 |172.20.122.3 ) :
 
 | **destination** | **iface** | **gw** |
 |-----------------|-----------|--------|
@@ -80,14 +80,14 @@ dans le **eth3**  nous avans :
 |192.168.0.22/24(SMTP) |ETH3||
 |192.168.0.254(DNS)|ETH3||
 
-## pour le **SMTP**(172.20.122.1) :
+## pour le **SMTP**(192.168.0.22) :
 
 | **destination** | **iface** | **gw** |
 |-----------------|-----------|--------|
-|172.20.122.2/24(DHCP)  |VLAN122|        |
-|172.20.122.1(Client)|ETH3|172.20.122.3|
-|172.20.122.3/24(ROUTEUR)  |VLAN122|        |
-|192.168.0.22/24(SMTP) |ETH3|172.20.122.3|
+|172.20.122.2/24(DHCP)  |VLAN122| 192.168.0.122|
+|172.20.122.1(Client)|VLAN122|192.168.0.122|
+|192.168.0.122/24(ROUTEUR)  |ETH3|        |
+|192.168.0.254(DNS)|ETH3||
 
 
 
@@ -113,23 +113,7 @@ donne le droit d'executer le fichier log :
 executer le log depuis la VM CLIENT:
 
 	./log > CLIENT.log
-<<<<<<< HEAD
 	
-=======
-
-active les interfacts:
-
-	ip link set up dev eth2
-	ip link set up dev VLAN122
-	ip link set up dev eth3
-
-accede a la VM depuis l'explorateur de fichier:
-
-	sftp://root@172.21.180.146/
-
-modifiaction de configuration de resolv pour que il demande d'abord au DNS:
-
->>>>>>> refs/remotes/origin/main
 	nano /etc/resolv.conf
 	nameserver 192.168.0.254
 ![capture du resolv.conf](RESSOURCE_RAPPORT/resolv_conf.png "capture du resolv.conf")
