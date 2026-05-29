@@ -108,14 +108,29 @@ la suite des comment:
 
 	nslookup smtp122.mail122.com 192.168.0.254
 
+demande au dsn l'adresse ip qui est associe a cette adresse mail:
+
 	host smtp122.mail122.com 192.168.0.254
+donne le droit d'executer le fichier log :
+
 	chmod +x log
+executer le log depuis la VM CLIENT:
+
 	./log > CLIENT.log
 
+active les interfacts:
+
+	ip link set up dev eth2
 	ip link set up dev VLAN122
+	ip link set up dev eth3
+
+accede a la VM depuis l'explorateur de fichier:
+
 	sftp://root@172.21.180.146/
-	
+
+modifiaction de configuration de resolv pour que il demande d'abord au DNS
 	nano /etc/resolv.conf
+	
 	
 Pour active l'interface:
 
