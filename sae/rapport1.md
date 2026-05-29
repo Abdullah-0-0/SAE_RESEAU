@@ -3,13 +3,15 @@
 * NOMS : Chamsiddine Abdullah - Clément Pissot
 * GROUPE de TP :  TD-1
 * X : 122
-* SECRET : antares
+* SECRET : antareszetapuppis
 * IP_CLIENT : 172.20.122.1/24
 * IP_DHCP : 172.20.122.2/24
 * IP_SMTP : 192.168.0.22/24
 * IPs du ROUTEUR : 172.20.122.3/24 et 192.168.0.122/24
 
 **Note**: Le document suivant doit rendre compte de votre plan d’adressage (i.e. la description des différents LAN, de leur interconnexion, des machines avec les IP voire @MAC que vous jugerez pertinentes), de vos tables de routage de CLIENT, ROUTEUR, SMTP et celle (supposée) de DNS, des commandes à réaliser sur CLIENT, ROUTEUR, SMTP, et tout ce qui vous semble nécessaire à la configuration de votre réseau.
+
+# 1) configuration et information du système
 
 ## Plan d'adressage
 
@@ -99,13 +101,10 @@ pour créer la route entre le CLIENT et le SMTP:
 	ip r a 172.20.122.2 via 192.168.0.122 dev eth3
 
 	nslookup smtp122.mail122.com 192.168.0.254
-	ip a add 172.20.122.1/24 dev  VLAN122
 
 	host smtp122.mail122.com 192.168.0.254
-	ip link a link eth2 name VLAN122 type vlan id 122
 	chmod +x log
 	./log > CLIENT.log
-	ip link set up dev VLAN122
 	
 	nano /etc/resolv.conf
 	
@@ -113,4 +112,36 @@ Pour active l'interface:
 
 	ip link set up dev eth2	
 
+# 2) la capture de la trame du vlan allant du client vers le dhcp ainsi que son expliquation
 
+(on place la trame ici)
+
+expliation de ce qu'on est sensé voir:
+
+# 3) visualisation de la résolution DNS via routeru vers client 
+
+(on place la trame ici)
+
+explication ici
+
+# 4) demonstration du routage entre la machine client et le smtp
+
+(on place la trame ici) 
+
+explication ici (les condition dans lesquelle on été prise les capture et sur quelle machne etc, et se que l'on voit )
+
+# 5) resulata de la commande ./log > MACHINE.log sur les diférente machines
+
+### Client:
+
+
+
+### DHCP:
+
+
+
+### Routeur:
+
+
+
+### SMTP:
