@@ -110,8 +110,14 @@ apt install isc-dhcp-server
 nano /etc/default/isc-dhcp-server
 # puis change l'interface IPV4 avec l'interface virtuelle:
 INTERFACESv4= "VLAN122"
-![capture config interface]()
 ````
+![capture config interface](RESSOURCE/Capture%20d’écran%20du%202026-06-02%2000-19-20.png)
+````bash
+#puis configure le dhcp dans le etc/dhcp/dhcpd.conf
+nano etc/dhcp/dhcpd.conf
+# comme ceci
+````
+![capture_dhcp]()
 # 2) active le systeme :
 
 ````bash
