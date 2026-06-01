@@ -23,7 +23,7 @@ Pour faire sa, on va commencer étapes par étapes:
 
 ```` bash
 	#creer la vlan dans l'interface eth2
-	ip link a  link eth2 name VLAN122 type valan id 122
+	ip link a  link eth2 name VLAN122 type vlan id 122
 ````
 * 2) activé l'interface physique :
 
