@@ -147,3 +147,14 @@ et la on peut faire la requette pour demende une adresse ip au dhcp.
 ```` bash
 dhclient vlan122
 ````
+
+# Analyse capture de trames(DHCP)
+dans la capture, on peut voir 4 trames.
+
+la premier un message DHCP Discover du client, qui envoie ce message au broadcast,car il chercher un server DHCP car il veut demande un adresse IP , particulierement celui la(172.20.122.1/24).
+
+dans le deuxièmes trames,correspond a un DHCP offer, le DHCP repond au CLIENT et lui propose d'adresse qu'il avais demande mais lui fournie des information sur le masque , la passerelle, le DNS etc ..
+
+dans la troisièmes, corespond a un DHCP requestion , à laquelle le CLIENT accepte la proposition du serveur et demande officellement l'attribution de l'adresse id 172.20.122.1/24.
+
+et dans la quatrièmes , corespond au DHCP ACK , et là le DHCP lui confirme l'attribution de l'adresse IP 
