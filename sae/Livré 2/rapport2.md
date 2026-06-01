@@ -54,34 +54,34 @@ dans le noyau ubuntun :
 # mettre en place le routeur:
 ## Partie VLAN:
 
-* 1) mettre en place la VLAN sur un cote du routeur:
+ 1) mettre en place la VLAN sur un cote du routeur:
 
 ````bash
 ip link a link eth2 name VLAN122 type vlan id 122
 ````
-* 2)active l'interface physique :
+ 2) active l'interface physique :
 
 ````bash 
 ip link set up dev eth2
 ```` 
-* 3) activé l'interface virtuelle:
+ 3) activé l'interface virtuelle:
 
 ````bash 
  ip link set up dev VLAN122
 ````
-* 4) affecter l'adresse 172.20.122.3/24 dans le VLAN
+ 4) affecter l'adresse 172.20.122.3/24 dans le VLAN
 
 ````bash 
 ip a a 172.20.122.3/24 dev VLAN122
 ````
 ## Partie ETH3 :
 
-* 1) affecter l'adresse 192.168.0.122/24 dans l'interface `ETH3`:
+ 1) affecter l'adresse 192.168.0.122/24 dans l'interface `ETH3`:
 
 ````bash
 ip a a 192.168.0.122/24 dev eth3 
 ````
-* 2) activer l'interface `eth3`:
+ 2) activer l'interface `eth3`:
 
 ````bash 
  ip link set up dev eth3
@@ -98,34 +98,52 @@ ping 192.168.0.254
 
 ## mis en activation du dhcp:
 
-* 1)installe les paquet `isc-dhcp-server`:
+ 1) installe les paquet `isc-dhcp-server`:
 
 ````bash 
 apt install isc-dhcp-server
 ```` 
 
-* 2) configuration dde l'interface par defaut :
+ 2) configuration dde l'interface par defaut :
 
 ````bash
 nano /etc/default/isc-dhcp-server
 # puis change l'interface IPV4 avec l'interface virtuelle:
 INTERFACESv4= "VLAN122"
 ````
-![capture config interface](RESSOURCE/Capture%20d’écran%20du%202026-06-02%2000-19-20.png)
+![capture config interface](RESSOURCE/interface.png)
 ````bash
 #puis configure le dhcp dans le etc/dhcp/dhcpd.conf
 nano etc/dhcp/dhcpd.conf
 # comme ceci
 ````
-![capture_dhcp]()
+![capture_dhcp](RESSOURCE/dhcp.png)
+# Attention !!!  vueillez à ce que tous sois correct pour éviter des error lors du demarage du système.
 # 2) active le systeme :
+toujours dans le dhcp, activez le système du dhcp:
 
-````bash
-syst
+````bash 
+systemctl start isc-dhcp-server
 ````
 
-* demande une adresse ip avec la commende `dhclient`
+ensuite on peut passe au `client`:
+
+1) mettez en place la VLAN :
+
+````bash
+ip link a link eth2 name VLAN122 type vlan id 122
+````
+2) et activez l'interface physique et virtuelle
+````bash 
+# interface physique
+ip link set up eth2
+
+# interface virtuelle
+ip link set up VLAN122
+````
+et la on peut faire la requette pour demende une adresse ip au dhcp.
+3)  demande une adresse ip avec la commende `dhclient`
 
 ```` bash
-	dhclient vlan122
+dhclient vlan122
 ````
