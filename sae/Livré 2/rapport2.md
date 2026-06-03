@@ -1,7 +1,7 @@
 # Manuel utilisateur
 
-* NOMS : CHAMSIDDINE Abdullah - PISSOT CLément
-* GROUPE de TP :  TP1
+* NOMS : Chamsiddine Abdullah - Pissot CLément
+* GROUPE de TP :  TD-1
 * X : 122
 * SECRET : antares
 * IP_CLIENT : 172.20.122.1/24
