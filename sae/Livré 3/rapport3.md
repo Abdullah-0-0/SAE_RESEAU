@@ -97,12 +97,25 @@
     data
     #puis ecrire le contenu.
     CHAMSIDDINE,PISSOT,antareszetapuppis,122
-    # et finir par un point pour 
+    # et finir par un point pour "dire que on n'a fini"
+    .
+    ````
+6) et on finit par **``quit``**
+    ````bash 
+    quit
     ````
 
 
 ### III) Verification de l'envoie du mail.
 
+Pour verifier que le mail a etais mien envoyer.
+
+on va aller regard au pres de `SMTP`.
+en regard le contenu de `/var/mail/alice`
+
+````bash 
+cat /var/mail/alice
+````
     
 
 
