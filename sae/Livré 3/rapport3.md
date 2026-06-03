@@ -116,6 +116,9 @@ en regard le contenu de `/var/mail/alice`
 ````bash 
 cat /var/mail/alice
 ````
+voici le resutat en temps normal:
+
+![img capture](RESSOURCE/mail.png)
     
 
 
