@@ -120,6 +120,10 @@ ip link set up dev VLAN122
 
 # Attribuer l'adresse IP au CLIENT dans le VLAN
 ip a add 172.20.122.1/24 dev VLAN122
+
+#Ajouter la route vers le SMTP
+ip route add 192.168.0.22 via 172.20.122.3 dev VLAN122
+
 # pour générer le fichier log du DHCP
 chmod +x log
 ./log > CLIENT.log
@@ -143,6 +147,8 @@ ip link set up dev VLAN122
 
 # Attribuer l'adresse IP à la machine DHCP
 ip a add 172.20.122.2/24 dev VLAN122
+# Ajouter la route vers le SMTP
+ip route add 192.168.0.22 via 172.20.122.3 dev VLAN122
 
 # pour genere le fichier log du DHCP
 chmod +x log
@@ -199,6 +205,14 @@ ip a add 192.168.0.22/24 dev eth3
 
 # Ajouter une route vers le VLAN en passant par le ROUTEUR
 ip route add 172.20.122.0/24 via 192.168.0.122 dev eth3
+
+#Ajouter une route vers le CLIENT
+ip route add 172.20.122.1 via 192.168.0.122 dev eth3
+
+#Ajouter une route vers le DHCP
+ip route add 172.20.122.2 via 192.168.0.122 dev eth3
+
+
 ```
 
 
