@@ -63,9 +63,20 @@
         systemcl reload postfix 
         ````
 
-## partier client
+# Partie CLIENT
 
-* crée utilisateur:
+## I) Creation de l'utilsateur dans la VM `CLIENT`:
+
+1) créer l'utilisateur bob  
+
+        ````bash
+        adduser bob
+        ````
+## II) envoie de mail :
+
+2) 
+    
+
 
 
 #  capture de trame:
