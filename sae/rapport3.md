@@ -41,7 +41,9 @@ aller dans site internet
 écrire le configurer comme suivant 
 puis apuyer sur continuer
 
+apres avoir terminer la configuration faire la commande 
 
+systemcl reload postfix 
 
 ## partier client
 
