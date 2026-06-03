@@ -19,3 +19,36 @@
 
 * expliquer dans les grandes ligne comment on a fait pour crée le le serveur reseaux
 * expliquer la capture d'écran
+
+comande faites:
+
+## partie SMTP
+
+* pour crée l'utilisateur :
+
+adduser alice
+
+* rajouter packet:
+
+apt install postfix
+
+dpkg-reconfigure postfix
+
+* configurer le postfix:
+
+aller dans site internet
+
+écrire le configurer comme suivant 
+puis apuyer sur continuer
+
+apres avoir terminer la configuration faire la commande 
+
+systemcl reload postfix 
+
+## partier client
+
+* crée utilisateur:
+
+![trbfnt](RESSOURCE/Capture d’écran du 2026-06-03 10-26-15.png)
+
+adduser bob
