@@ -47,12 +47,6 @@
 
     * aller dans la partie `site internet`
     puis le configure de cette manier la en suivant les different etapes.
-écrire le configurer comme suivant 
-![bvngivu](RESSOURCE/cap1.png)
-![bvngivu](RESSOURCE/cap2.png)
-![bvngivu](RESSOURCE/cap3.png)
-![bvngivu](RESSOURCE/cap4.png)
-puis apuyer sur continuer
 
         *  rajouter le nom du courrier du système `mail122.com`.
     ![bvngivu](RESSOURCE/cap1.png)
