@@ -128,16 +128,29 @@ voici le resutat en temps normal:
 
 
 
-on peut voir deux machine comuniquer avec les adresse IP suivante:
+On peut voir deux machines communiquer avec les adresses IP suivantes :
 
-* 172.20.122.1 qui corespond a la machine client
-* 192.168.0.22 qui corespond a la machine SMTP
+* `172.20.122.1`, qui correspond à la machine CLIENT ;
+* `192.168.0.22`, qui correspond à la machine SMTP.
 
-la première ligne est probablement la plus diférents des autres.
-elle est envoyer par la machine client vers l'adresse 192.168.0.254 qui corespond au DNS
-et est un protocole DNS (qui est le seul de la trame).
-il permet le transpore d'un message pour l'adresse smtp122.mail122.com.
-puis commence l'envoi du mail en lui meme.
-il va passer par localhost.ad.iut-nantes.univ-nantes.prive.
-on aprend que le message viens de l'adresse mail bob@mail122.com et a été recu par l'adresse alice@mail122.com.
-l'entièreter des tramee envoyer sont de protocole TCP et SMTP.
+La première ligne est probablement la plus différente des autres.  
+Elle est envoyée par la machine CLIENT vers l’adresse `192.168.0.254`, qui correspond au DNS. C’est une requête DNS : le CLIENT demande au DNS à quelle adresse IP correspond le nom `smtp122.mail122.com`.
+
+Dans les trames 2 à 4, ce sont des trames TCP. Elles établissent une connexion TCP avec un `SYN` dans la trame 2, un `SYN-ACK` dans la trame 3, puis un `ACK` dans la trame 4.
+
+Ensuite, le serveur SMTP répond qu’il est prêt dans la trame 5.
+
+C’est à partir de là que l’on commence à voir les trames liées à l’envoi du mail.  
+Dans la trame 7, le CLIENT envoie une requête SMTP avec `EHLO smtp122.mail122.com`. Le serveur SMTP répond ensuite avec la liste des fonctionnalités qu’il possède.
+
+Dans la trame 11, le CLIENT précise l’adresse de l’expéditeur. Le serveur SMTP lui répond `OK` dans la trame suivante.
+
+Dans la trame 14, le CLIENT précise l’adresse du destinataire du mail, puis le serveur SMTP lui répond `OK`.
+
+Ensuite, dans la trame 17, le CLIENT précise qu’il va écrire le contenu du message avec la commande `DATA`. Le serveur SMTP lui répond qu’il attend le contenu du message.
+
+Dans la trame 20, le CLIENT envoie le contenu du message. Dans la trame 22, le CLIENT précise la fin du mail avec le caractère `.`.
+
+Pour finir, dans les trames 24 à 27, le serveur SMTP répond qu’il a accepté le message et qu’il sera envoyé.
+
+Les trames 29 et 30 correspondent à la fin de la communication.
