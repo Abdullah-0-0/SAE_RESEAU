@@ -22,39 +22,56 @@
 
 comande faites:
 
-## partie SMTP
+# Partie SMTP
 
-* pour crée l'utilisateur :
+## I) crée l'utilisateur :
 
-adduser alice
+1) créer utilisateur **alice** dans la vm `SMTP`:
 
-* rajouter packet:
+    ````bash 
+    adduser alice
+    ````
+## II) install / configuration les paquets necessaire
+1)  rajouter packet necessaire :
 
-apt install postfix
+    ````bash 
+    #install le paquet
+    apt install postfix
+    #puis le configue
+    dpkg-reconfigure postfix
+    ````
 
-dpkg-reconfigure postfix
 
-* configurer le postfix:
 
-aller dans site internet
+2) Configurer le `postfix`:
 
-écrire le configurer comme suivant 
-puis apuyer sur continuer
+    * aller dans la partie `site internet`
+    puis le configure de cette manier la en suivant les different etapes.
 
-apres avoir terminer la configuration faire la commande 
+        *  rajouter le nom du courrier du système `mail122.com`.
+    ![bvngivu](RESSOURCE/cap1.png)
+        * rajouter d'adresse `mail122.com` sur la liste des domaines.
+        ![bvngivu](RESSOURCE/cap2.png)
+        * rajouter le réseaux internes :
+        ![bvngivu](RESSOURCE/cap3.png)
+        * et finir par selection le protocols `ipv4`.
+        ![bvngivu](RESSOURCE/cap4.png)
+3) mettre en route le SMTP :
+    * après avoir terminer la configuration faire la commande `systemcl reload postfix`.
 
-systemcl reload postfix 
+        ```` bash 
+        systemcl reload postfix 
+        ````
 
 ## partier client
 
 * crée utilisateur:
 
-![bvngivu](RESSOURCE/cap1.png)
 
 
-![bvngivu](RESSOURCE/cap2.png)
 
-![bvngivu](RESSOURCE/cap3.png)
 
-![bvngivu](RESSOURCE/cap4.png)
+
+
+
 adduser bob
