@@ -36,7 +36,7 @@ Pour faire sa, on va commencer étapes par étapes:
 ````bash
 	ip link set up dev VLAN122
 ````
-* 4) affecter l'adresse 172.20.122.2/24 au `dhcp` la VLAN:
+* 4) affecter l'adresse 172.20.122.2/24 au `dhcp` pour la VLAN:
 
 ````bash
 	ip a a 172.20.122.2/24 dev VLAN122
@@ -54,7 +54,7 @@ dans le noyau ubuntun :
 # mettre en place le routeur:
 ## Partie VLAN:
 
- 1) mettre en place la VLAN sur un cote du routeur:
+ 1) mettre en place la VLAN sur un côté du routeur:
 
 ````bash
 ip link a link eth2 name VLAN122 type vlan id 122
@@ -112,13 +112,16 @@ nano /etc/default/isc-dhcp-server
 INTERFACESv4= "VLAN122"
 ````
 ![capture config interface](RESSOURCE/interface.png)
+
 ````bash
 #puis configure le dhcp dans le etc/dhcp/dhcpd.conf
 nano etc/dhcp/dhcpd.conf
 # comme ceci
 ````
 ![capture_dhcp](RESSOURCE/dhcp.png)
-# Attention !!!  vueillez à ce que tous sois correct pour éviter des error lors du demarage du système.
+
+
+# Attention !!!  vueillez à ce que tous sois correct pour éviter des erreurs lors du demarage du système.
 # 2) active le systeme :
 toujours dans le dhcp, activez le système du dhcp:
 
