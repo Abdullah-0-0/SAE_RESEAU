@@ -115,7 +115,7 @@ INTERFACESv4= "VLAN122"
 
 ````bash
 #puis configure le dhcp dans le etc/dhcp/dhcpd.conf
-nano etc/dhcp/dhcpd.conf
+nano /etc/dhcp/dhcpd.conf
 # comme ceci
 ````
 ![capture_dhcp](RESSOURCE/dhcp.png)
@@ -137,6 +137,7 @@ ensuite on peut passe au `client`:
 ip link a link eth2 name VLAN122 type vlan id 122
 ````
 2) et activez l'interface physique et virtuelle
+
 ````bash 
 # interface physique
 ip link set up eth2
@@ -148,7 +149,7 @@ et la on peut faire la requette pour demende une adresse ip au dhcp.
 3)  demande une adresse ip avec la commende `dhclient`
 
 ```` bash
-dhclient vlan122
+dhclient VLAN122
 ````
 
 # Analyse capture de trames(DHCP)
