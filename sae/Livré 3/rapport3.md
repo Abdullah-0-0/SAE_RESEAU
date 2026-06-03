@@ -59,7 +59,7 @@
 3) mettre en route le SMTP :
     * après avoir terminer la configuration faire la commande `systemcl reload postfix`.
 
-        ```` bash 
+        ````bash 
         systemcl reload postfix 
         ````
 
@@ -68,13 +68,41 @@
 ## I) Creation de l'utilsateur dans la VM `CLIENT`:
 
 1) créer l'utilisateur bob  
+    ````bash
+    adduser bob
+    ````
+## II) Envoie de mail :
 
-        ````bash
-        adduser bob
-        ````
-## II) envoie de mail :
+### dans la VM `CLIENT`.
 
-2) 
+1) créer une connexion avec le `SMTP` avec la commande `netcat`:
+
+    ````bash 
+    nc smtp122.mail122.com smtp
+    ````
+2) démarrer une session SMTP avec la commende `ehlo`.
+    ````bash
+    ehlo smtp122.mail122.com
+    ````
+3) et ensuite precise le expediteur dans notre cas **`bob`**
+    ````bash 
+    mail from: bob@mail122.com
+    ````
+4) puis le precise le destinateur dans notre cas **`alice`**.
+    ````bash
+    rcpt to: alice@mail122.com
+    ````
+5) puis a ce moment la on peut ecrire le contenu de notre menace avec `data`.
+    ````bash
+    data
+    #puis ecrire le contenu.
+    CHAMSIDDINE,PISSOT,antareszetapuppis,122
+    # et finir par un point pour 
+    ````
+
+
+### III) Verification de l'envoie du mail.
+
     
 
 
